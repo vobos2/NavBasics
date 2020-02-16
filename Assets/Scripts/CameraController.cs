@@ -5,24 +5,14 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     // Start is called before the first frame update
-    //public float hSpeed, vSpeed;
-    private float lookSpeed, mouseX, mouseY, moveSpeed;
-    private Rigidbody rb;
-    float moveForward, moveHorizontal, moveVertical;
 
+    private float lookSpeed, mouseX, mouseY, moveSpeed;
+
+    private List<GameObject> hits;
     void Start()
     {
-        moveVertical = moveHorizontal = moveForward = 0.0f;
-
-        RaycastHit hit;
-        Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            Transform objectHit = hit.transform;
-            // Do something with the object that was hit by the raycast.
-        }
-        lookSpeed = 3.0f;
+        hits = new List<GameObject>();
+        lookSpeed = 4.0f;
         moveSpeed = 5.0f;
         mouseX = mouseY = 0.0f;
     }
@@ -31,14 +21,20 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         movement();
+        detectObjects();
 
     }
+    // Camera free-look, moves where camera is pointing
     private void movement()
     {
         mouseX += lookSpeed * Input.GetAxis("Mouse X");
         mouseY -= lookSpeed * Input.GetAxis("Mouse Y");
 
         transform.eulerAngles = new Vector3(mouseY, mouseX, 0.0f);
+
+        Vector3 input = Quaternion.Euler(0, transform.eulerAngles.y, 0) * new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+
+        transform.position += input * Time.deltaTime * moveSpeed;
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -51,14 +47,56 @@ public class CameraController : MonoBehaviour
             {
                 transform.position -= Vector3.up * Time.deltaTime * moveSpeed;
             }
-
         }
+    }
+    private void detectObjects()
+    {
+        // Select object
+        if (Input.GetMouseButtonDown(0))
+        {
+     
+            RaycastHit hit;
+            Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            foreach (GameObject h in hits)
+            {
+                Debug.Log(h.gameObject.tag);
+            }
+            if (Physics.Raycast(ray, out hit))
+            {
+                Transform objectHit = hit.transform;
+                // Do something with the object that was hit by the raycast.
+                if (objectHit.CompareTag("Agent"))
+                {
+                    // If object already in our hit list, ignore.
+                    if (!hits.Contains(objectHit.gameObject))
+                    {
+                        hits.Add(objectHit.gameObject);
+                    }
+                    Debug.DrawRay(ray.origin, ray.direction, Color.red);
+                    Debug.Log(hit.distance);
 
+                }
 
-        Vector3 input = Quaternion.Euler(0, transform.eulerAngles.y, 0) * new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+            }
+        }
+        // Deselect object
+        else if (Input.GetMouseButtonDown(1))
+        {
+            RaycastHit hit;
+            Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
-        transform.position += input * Time.deltaTime * moveSpeed;
+            if (Physics.Raycast(ray, out hit))
+            {
+                Transform objectHit = hit.transform;
+                // Do something with the object that was hit by the raycast.
+                if (hits.Contains(objectHit.gameObject))
+                {
+                    Debug.Log("Removing Agent");
+                    hits.Remove(objectHit.gameObject);
 
+                }
 
+            }
+        }
     }
 }

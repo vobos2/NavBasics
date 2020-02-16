@@ -28,4 +28,9 @@ public class GameController : MonoBehaviour
     {
         
     }
+    // Return a random value between two values. First value is set up to be negative, second to be positive. Add/Subtract 1 as padding.
+    private float RandomizeCoordinates(float[] constraints)
+    {
+        return Random.Range(constraints[0] + 1, constraints[1] - 1);
+    }
 }

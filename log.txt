@@ -1,0 +1,4 @@
+60e801d was Alexsandr Vobornov, 3 minutes ago, message: Merge branch 'master' of https://github.com/vobos2/NavBasics
+422ccd6 was Alexsandr Vobornov, 5 minutes ago, message: Added Camera free-look script and movement based on camera direction instead of location relative to plane. Renamed asset folders
+4363e5d was vobos2, 22 hours ago, message: Create README.md
+a06cf5c was Alexsandr Vobornov, 22 hours ago, message: Initial commit, began organizing some game objects and creating workspace for scripts, materials, and scenes.
