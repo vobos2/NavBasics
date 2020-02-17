@@ -57,13 +57,12 @@ public class CameraController : MonoBehaviour
      
             RaycastHit hit;
             Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-            foreach (GameObject h in hits)
-            {
-                Debug.Log(h.gameObject.tag);
-            }
+          
             if (Physics.Raycast(ray, out hit))
             {
                 Transform objectHit = hit.transform;
+                Debug.DrawRay(ray.origin, ray.direction, Color.red);
+                
                 // Do something with the object that was hit by the raycast.
                 if (objectHit.CompareTag("Agent"))
                 {
@@ -71,10 +70,23 @@ public class CameraController : MonoBehaviour
                     if (!hits.Contains(objectHit.gameObject))
                     {
                         hits.Add(objectHit.gameObject);
+                        Debug.Log("Agent Found");
+                        Debug.Log(hit.distance);
                     }
-                    Debug.DrawRay(ray.origin, ray.direction, Color.red);
-                    Debug.Log(hit.distance);
+                
 
+                } else
+                {
+                    Debug.Log("Sending agents to destination");
+                    foreach (GameObject h in hits)
+                    {
+                        if (hit.transform)
+                        {
+                            Debug.Log(hit.transform.position);
+                            h.GetComponent<AgentController>().moveAgent(hit.point);
+                        }
+                    }
+                    
                 }
 
             }
