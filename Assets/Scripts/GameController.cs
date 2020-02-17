@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         detectObjects();
     }
@@ -81,6 +81,7 @@ public class GameController : MonoBehaviour
                     if (!hits.Contains(objectHit.gameObject))
                     {
                         hits.Add(objectHit.gameObject);
+                        objectHit.GetComponent<AgentController>().changeColor();
                         Debug.Log("Agent Found");
                         Debug.Log(hit.distance);
                     }
@@ -116,8 +117,8 @@ public class GameController : MonoBehaviour
                 if (hits.Contains(objectHit.gameObject))
                 {
                     Debug.Log("Removing Agent");
+                    objectHit.GetComponent<AgentController>().changeColor();
                     hits.Remove(objectHit.gameObject);
-
                 }
 
             }
@@ -141,7 +142,8 @@ public class GameController : MonoBehaviour
                     }
                     atGoal = true;
                 }
-            } else
+            }
+            else
             {
                 Debug.Log("Sending agents to Maze Goal");
                 foreach (GameObject h in hits)

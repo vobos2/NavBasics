@@ -1,8 +1,11 @@
-ee9b7c0 was Alexsandr Vobornov, 79 seconds ago, message: Created an entire maze for agents to traverse. Implemented agent spawning, need to make it random within a spawnpoint. When you middle click, all selected agents will be sent to the goal state at the end of the maze.
-f74bb42 was Alexsandr Vobornov, 86 minutes ago, message: Updated the commit log.txt
-ff6d3eb was Alexsandr Vobornov, 89 minutes ago, message: Added agent navigation. You can select agent(s) now, and if you click on a point where there is no agent to select, all already selected agents will walk to that point on the navmesh.
-9c37a88 was Alexsandr Vobornov, 27 hours ago, message: Added the ability (via raycasting) to select agents (left click) and deselect agents (right click)
-60e801d was Alexsandr Vobornov, 28 hours ago, message: Merge branch 'master' of https://github.com/vobos2/NavBasics
-422ccd6 was Alexsandr Vobornov, 28 hours ago, message: Added Camera free-look script and movement based on camera direction instead of location relative to plane. Renamed asset folders
-4363e5d was vobos2, 2 days ago, message: Create README.md
-a06cf5c was Alexsandr Vobornov, 2 days ago, message: Initial commit, began organizing some game objects and creating workspace for scripts, materials, and scenes.
+406a79c was Alexsandr Vobornov, 9 hours ago, message: Created 2 more levels. Added off-mesh links to go from level 1 to 2 and from 2 to 3 (and vice versa). Added complexity to maze. When you click middle mouse after sending agents to goal state they will now make their way back to where they spawned. Off-mesh link for level 2->3 is manually generated. Reorganized project structure to encapsulate walls, links into 1 parent folder (respectively)
+f0023bd was Alexsandr Vobornov, 12 hours ago, message: Added gitignore for visual studio cache files
+7e63034 was Alexsandr Vobornov, 12 hours ago, message: log.txt update
+ee9b7c0 was Alexsandr Vobornov, 12 hours ago, message: Created an entire maze for agents to traverse. Implemented agent spawning, need to make it random within a spawnpoint. When you middle click, all selected agents will be sent to the goal state at the end of the maze.
+f74bb42 was Alexsandr Vobornov, 14 hours ago, message: Updated the commit log.txt
+ff6d3eb was Alexsandr Vobornov, 14 hours ago, message: Added agent navigation. You can select agent(s) now, and if you click on a point where there is no agent to select, all already selected agents will walk to that point on the navmesh.
+9c37a88 was Alexsandr Vobornov, 2 days ago, message: Added the ability (via raycasting) to select agents (left click) and deselect agents (right click)
+60e801d was Alexsandr Vobornov, 2 days ago, message: Merge branch 'master' of https://github.com/vobos2/NavBasics
+422ccd6 was Alexsandr Vobornov, 2 days ago, message: Added Camera free-look script and movement based on camera direction instead of location relative to plane. Renamed asset folders
+4363e5d was vobos2, 3 days ago, message: Create README.md
+a06cf5c was Alexsandr Vobornov, 3 days ago, message: Initial commit, began organizing some game objects and creating workspace for scripts, materials, and scenes.
