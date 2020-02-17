@@ -7,22 +7,33 @@ public class AgentController : MonoBehaviour
 {
     // Start is called before the first frame update
     private NavMeshAgent agent;
-
+    private Vector3 spawnCoords;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        RememberSpawn();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Destination
-      
+        
+
     }
-    // our raycasts can set the destination of the agent(s) by calling this method and passing in the raycast destination
-    public void moveAgent(Vector3 t)
+    private void RememberSpawn()
     {
-            agent.destination = t;
+        spawnCoords = this.transform.position;
     }
-    
+    #region public 
+    // Moves agent to desired vector.
+    public void MoveAgent(Vector3 t)
+    {
+        agent.destination = t;
+    }
+   
+    public Vector3 GetSpawnCoords()
+    {
+        return spawnCoords;
+    }
+    #endregion
 }
