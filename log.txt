@@ -1,4 +1,6 @@
-60e801d was Alexsandr Vobornov, 3 minutes ago, message: Merge branch 'master' of https://github.com/vobos2/NavBasics
-422ccd6 was Alexsandr Vobornov, 5 minutes ago, message: Added Camera free-look script and movement based on camera direction instead of location relative to plane. Renamed asset folders
-4363e5d was vobos2, 22 hours ago, message: Create README.md
-a06cf5c was Alexsandr Vobornov, 22 hours ago, message: Initial commit, began organizing some game objects and creating workspace for scripts, materials, and scenes.
+ff6d3eb was Alexsandr Vobornov, 54 seconds ago, message: Added agent navigation. You can select agent(s) now, and if you click on a point where there is no agent to select, all already selected agents will walk to that point on the navmesh.
+9c37a88 was Alexsandr Vobornov, 25 hours ago, message: Added the ability (via raycasting) to select agents (left click) and deselect agents (right click)
+60e801d was Alexsandr Vobornov, 26 hours ago, message: Merge branch 'master' of https://github.com/vobos2/NavBasics
+422ccd6 was Alexsandr Vobornov, 26 hours ago, message: Added Camera free-look script and movement based on camera direction instead of location relative to plane. Renamed asset folders
+4363e5d was vobos2, 2 days ago, message: Create README.md
+a06cf5c was Alexsandr Vobornov, 2 days ago, message: Initial commit, began organizing some game objects and creating workspace for scripts, materials, and scenes.
