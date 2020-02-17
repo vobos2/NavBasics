@@ -54,15 +54,15 @@ public class CameraController : MonoBehaviour
         // Select object
         if (Input.GetMouseButtonDown(0))
         {
-     
+
             RaycastHit hit;
             Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-          
+
             if (Physics.Raycast(ray, out hit))
             {
                 Transform objectHit = hit.transform;
                 Debug.DrawRay(ray.origin, ray.direction, Color.red);
-                
+
                 // Do something with the object that was hit by the raycast.
                 if (objectHit.CompareTag("Agent"))
                 {
@@ -73,9 +73,10 @@ public class CameraController : MonoBehaviour
                         Debug.Log("Agent Found");
                         Debug.Log(hit.distance);
                     }
-                
 
-                } else
+
+                }
+                else
                 {
                     Debug.Log("Sending agents to destination");
                     foreach (GameObject h in hits)
@@ -86,7 +87,7 @@ public class CameraController : MonoBehaviour
                             h.GetComponent<AgentController>().moveAgent(hit.point);
                         }
                     }
-                    
+
                 }
 
             }
@@ -108,6 +109,24 @@ public class CameraController : MonoBehaviour
 
                 }
 
+            }
+
+        }
+        //Send object to maze goal
+        else if (Input.GetMouseButtonDown(2))
+        {
+
+            GameObject goal = GameObject.FindGameObjectWithTag("Maze Target");
+            Debug.Log(goal.transform);
+            if (goal)
+            {
+                Debug.Log("Sending agents to Maze Goal");
+                foreach (GameObject h in hits)
+                {
+                    Debug.Log(goal.transform.position);
+                    h.GetComponent<AgentController>().moveAgent(goal.transform.position);
+
+                }
             }
         }
     }

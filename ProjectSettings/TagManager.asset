@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Agent
+  - Obstacle
+  - Maze Target
+  - Spawn
   layers:
   - Default
   - TransparentFX
