@@ -57,6 +57,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\AgentController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\DynamicCubesAnimation.cs" />
      <Compile Include="Assets\Scripts\DynamicWallAnimation.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
  <Reference Include="Unity.Timeline.Editor">
