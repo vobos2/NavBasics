@@ -8,13 +8,11 @@ public class MovableObstacleController : MonoBehaviour {
   private NavMeshObstacle obstacle;
 
   public float speed = 20f;
-  private bool isPicked;
 
 
   void Start() {
     obstacle = GetComponent<NavMeshObstacle>();
 
-    isPicked = false;
     this.GetComponent<Renderer>().material.color = Color.white;
 
   }
@@ -22,35 +20,19 @@ public class MovableObstacleController : MonoBehaviour {
 
    void Update () {
        Vector3 pos = transform.position;
-
-       if (isPicked) {
-         if (Input.GetKey ("d")) {
+         if (Input.GetKey (KeyCode.RightArrow)) {
              pos.x += speed * Time.deltaTime;
          }
-         if (Input.GetKey ("a")) {
+         if (Input.GetKey (KeyCode.LeftArrow)) {
              pos.x -= speed * Time.deltaTime;
          }
-         if (Input.GetKey ("w")) {
+         if (Input.GetKey (KeyCode.UpArrow)) {
              pos.z += speed * Time.deltaTime;
          }
-         if (Input.GetKey ("s")) {
+         if (Input.GetKey (KeyCode.DownArrow)) {
              pos.z -= speed * Time.deltaTime;
          }
-       }
-       transform.position = pos;
-   }
 
-   public void changeColor()
-   {
-       if (!isPicked)
-       {
-           this.GetComponent<Renderer>().material.color = Color.green;
-           isPicked = true;
-       }
-       else
-       {
-           this.GetComponent<Renderer>().material.color = Color.white;
-           isPicked = false;
-       }
+       transform.position = pos;
    }
 }
