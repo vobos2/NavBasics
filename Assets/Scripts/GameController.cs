@@ -69,7 +69,7 @@ public class GameController : MonoBehaviour
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray,out hit, 1500))
             {
                 Transform objectHit = hit.transform;
                 Debug.DrawRay(ray.origin, ray.direction, Color.red);
@@ -85,7 +85,6 @@ public class GameController : MonoBehaviour
                         Debug.Log("Agent Found");
                         Debug.Log(hit.distance);
                     }
-
 
                 }
                 else

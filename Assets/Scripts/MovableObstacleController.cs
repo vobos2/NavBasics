@@ -18,7 +18,7 @@ public class MovableObstacleController : MonoBehaviour {
   }
 
 
-   void Update () {
+   void FixedUpdate () {
        Vector3 pos = transform.position;
          if (Input.GetKey (KeyCode.RightArrow)) {
              pos.x += speed * Time.deltaTime;
