@@ -22385,8 +22385,8 @@ GameObject:
   m_Name: Spawn Wall3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &725466264
 Transform:
@@ -22798,8 +22798,8 @@ GameObject:
   m_Name: Spawn Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &777078874
 Transform:
@@ -23249,9 +23249,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8916441126537396050, guid: 5f4c2368000d3064dbf3ef03916e4b28,
         type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8916441126537396050, guid: 5f4c2368000d3064dbf3ef03916e4b28,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a4175bad96f63439cb2a9db91920f990, type: 2}
+      objectReference: {fileID: 2100000, guid: 07fb8838d1fda4f1bb01f60f10eed200, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f4c2368000d3064dbf3ef03916e4b28, type: 3}
 --- !u!1 &901333609
@@ -24519,8 +24524,8 @@ GameObject:
   m_Name: Cube (3)
   m_TagString: MovingWall
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 40
   m_IsActive: 1
 --- !u!4 &1190344479
 Transform:
@@ -24546,8 +24551,8 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.65, y: 0.5, z: 0.65}
-  m_MoveThreshold: 0.1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 1.34
   m_Carve: 1
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: 0}
@@ -24739,8 +24744,8 @@ GameObject:
   m_Name: Spawn Wall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1203135613
 Transform:
@@ -25960,7 +25965,7 @@ PrefabInstance:
     - target: {fileID: 317621597921787040, guid: 5f4c2368000d3064dbf3ef03916e4b28,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 317621597921787040, guid: 5f4c2368000d3064dbf3ef03916e4b28,
         type: 3}
@@ -33285,7 +33290,7 @@ GameObject:
   - component: {fileID: 2023826963}
   - component: {fileID: 2023826962}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: GrassPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
