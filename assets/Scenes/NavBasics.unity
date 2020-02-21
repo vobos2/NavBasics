@@ -26526,8 +26526,8 @@ GameObject:
   m_Name: Terrain_SNOW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967287
+  m_NavMeshLayer: 4
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!154 &1456411389
 TerrainCollider:
