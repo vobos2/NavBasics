@@ -9,7 +9,9 @@ public class GameController : MonoBehaviour
     public Camera cam;
     public int agentNum;
     private List<GameObject> hits;
+    private List<GameObject> agents;
     private bool atGoal;
+    private Vector3 mouseTarget;
     void Start()
     {
         if (agentNum < 5)
@@ -17,9 +19,12 @@ public class GameController : MonoBehaviour
             agentNum = 5;
         }
 
-        spawnAgents();
-
+        agents = new List<GameObject>();
         hits = new List<GameObject>();
+
+        SpawnAgents();
+
+
 
         atGoal = false;
     }
@@ -27,40 +32,30 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        detectObjects();
+        DetectObjects();
     }
-    /*    // Return a random value between two values. First value is set up to be negative, second to be positive. Add/Subtract 1 as padding.
-        private float RandomizeCoordinates(float[] constraints)
-        {
-            return Random.Range(constraints[0] + 1, constraints[1] - 1);
-        }
-        // Randomize a spawn location and return a vector
-        private Vector3 GenSpawnPoint(float[] xConstraints, float[] zConstraints)
-        {
-            return new Vector3(RandomizeCoordinates(xConstraints), 1f, RandomizeCoordinates(zConstraints));
-        }
-    */
 
-    private void spawnAgents()
+    // Randomize a spawn location and return a vector
+    private Vector3 GenSpawnPoint()
     {
-        GameObject spawnPoint = GameObject.FindGameObjectWithTag("Spawn");
-        Vector3 coord = spawnPoint.transform.position;
-        coord.y = 0f;
+        GameObject spawn = GameObject.FindGameObjectWithTag("SpawnBase");
 
-        //NEED TO IMPLEMENT RANDOMIZED SPAWNING. LOOK INTO GRIDS,CANVAS!!!!
+        return new Vector3(spawn.transform.position.x + (Random.insideUnitCircle * 3).x, 1f, spawn.transform.position.z + (Random.insideUnitCircle * 3).x);
+    }
 
+    private void SpawnAgents()
+    {
         for (int i = 0; i < agentNum; i++)
         {
             GameObject agent = Instantiate(agentPrefab);
-            coord.x += 1f;
-            coord.z += .5f;
+            agents.Add(agent.gameObject);
             agent.transform.parent = agentParent.transform;
-            agent.transform.position = coord;
+            agent.transform.position = GenSpawnPoint();
+
         }
     }
-
     // Raycasting object selection/deselection method
-    private void detectObjects()
+    private void DetectObjects()
     {
         // Select object
         if (Input.GetMouseButtonDown(0))
@@ -69,7 +64,7 @@ public class GameController : MonoBehaviour
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray,out hit, 1500))
+            if (Physics.Raycast(ray, out hit, 1500))
             {
                 Transform objectHit = hit.transform;
                 Debug.DrawRay(ray.origin, ray.direction, Color.red);
@@ -82,8 +77,8 @@ public class GameController : MonoBehaviour
                     {
                         hits.Add(objectHit.gameObject);
                         objectHit.GetComponent<AgentController>().changeColor();
-                        Debug.Log("Agent Found");
-                        Debug.Log(hit.distance);
+                        //Debug.Log("Agent Found");
+                        //Debug.Log(hit.distance);
                     }
 
                 }
@@ -94,13 +89,12 @@ public class GameController : MonoBehaviour
                     {
                         if (hit.transform)
                         {
-                            Debug.Log(hit.transform.position);
+                            //Debug.Log(hit.transform.position);
                             h.GetComponent<AgentController>().MoveAgent(hit.point);
+                            mouseTarget = hit.point;
                         }
                     }
-
                 }
-
             }
         }
         // Deselect object
@@ -115,7 +109,7 @@ public class GameController : MonoBehaviour
                 // Do something with the object that was hit by the raycast.
                 if (hits.Contains(objectHit.gameObject))
                 {
-                    Debug.Log("Removing Agent");
+                    //Debug.Log("Removing Agent");
                     objectHit.GetComponent<AgentController>().changeColor();
                     hits.Remove(objectHit.gameObject);
                 }
@@ -129,13 +123,13 @@ public class GameController : MonoBehaviour
             if (!atGoal)
             {
                 GameObject goal = GameObject.FindGameObjectWithTag("Maze Target");
-                Debug.Log(goal.transform);
+                //Debug.Log(goal.transform);
                 if (goal)
                 {
                     Debug.Log("Sending agents to Maze Goal");
                     foreach (GameObject h in hits)
                     {
-                        Debug.Log(goal.transform.position);
+                        //Debug.Log(goal.transform.position);
                         h.GetComponent<AgentController>().MoveAgent(goal.transform.position);
 
                     }

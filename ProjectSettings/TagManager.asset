@@ -9,6 +9,7 @@ TagManager:
   - Maze Target
   - Spawn
   - MovingWall
+  - SpawnBase
   layers:
   - Default
   - TransparentFX
