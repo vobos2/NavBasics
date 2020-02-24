@@ -12,11 +12,11 @@ NavMeshProjectSettings:
   - name: Jump
     cost: 2
   - name: Mud
-    cost: 2
+    cost: 3
   - name: Snow
-    cost: 1.5
-  - name: Fire
     cost: 2
+  - name: Fire
+    cost: 4
   - name: 
     cost: 1
   - name: 
