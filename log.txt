@@ -1,11 +1,28 @@
-406a79c was Alexsandr Vobornov, 9 hours ago, message: Created 2 more levels. Added off-mesh links to go from level 1 to 2 and from 2 to 3 (and vice versa). Added complexity to maze. When you click middle mouse after sending agents to goal state they will now make their way back to where they spawned. Off-mesh link for level 2->3 is manually generated. Reorganized project structure to encapsulate walls, links into 1 parent folder (respectively)
-f0023bd was Alexsandr Vobornov, 12 hours ago, message: Added gitignore for visual studio cache files
-7e63034 was Alexsandr Vobornov, 12 hours ago, message: log.txt update
-ee9b7c0 was Alexsandr Vobornov, 12 hours ago, message: Created an entire maze for agents to traverse. Implemented agent spawning, need to make it random within a spawnpoint. When you middle click, all selected agents will be sent to the goal state at the end of the maze.
-f74bb42 was Alexsandr Vobornov, 14 hours ago, message: Updated the commit log.txt
-ff6d3eb was Alexsandr Vobornov, 14 hours ago, message: Added agent navigation. You can select agent(s) now, and if you click on a point where there is no agent to select, all already selected agents will walk to that point on the navmesh.
-9c37a88 was Alexsandr Vobornov, 2 days ago, message: Added the ability (via raycasting) to select agents (left click) and deselect agents (right click)
-60e801d was Alexsandr Vobornov, 2 days ago, message: Merge branch 'master' of https://github.com/vobos2/NavBasics
-422ccd6 was Alexsandr Vobornov, 2 days ago, message: Added Camera free-look script and movement based on camera direction instead of location relative to plane. Renamed asset folders
-4363e5d was vobos2, 3 days ago, message: Create README.md
-a06cf5c was Alexsandr Vobornov, 3 days ago, message: Initial commit, began organizing some game objects and creating workspace for scripts, materials, and scenes.
+0305bd5 was Alexsandr Vobornov, 72 seconds ago, message: Re-worked braking mechanism. Added report. Added documentation to methods in AgentController & GameController. Removed carving where it was not needed.
+0a5afef was Alexsandr Vobornov, 2 days ago, message: Fixed broken weighted planes. Made areas walkable so mud, snow, and fire now work properly.
+71703df was Alexsandr Vobornov, 2 days ago, message: Implemented agent braking mechanism. Fixed snow terrain by disabling collider, game no longer lags when moving obstacle hits it. Added more bottleneck areas and an off-mesh link to level 2. Updated maze to only have one entrance. Removed carving from the dynamic wall as agents couldnt find a path. Added carving to a few of the maze walls so agents would stop trying to go through them.
+70d3c7d was FeodorD, 5 days ago, message: fixed snow
+04b1d76 was Alexsandr Vobornov, 7 days ago, message: Fixed some areas not covered by navmesh. Camera and movable wall now move separately. Increased raycast distance
+190ca8a was FeodorD, 7 days ago, message: saved
+efd29eb was FeodorD, 7 days ago, message: wall moves
+c4b1320 was FeodorD, 7 days ago, message: added script
+efed3fa was FeodorD, 7 days ago, message: color-change
+f4a38a7 was FeodorD, 7 days ago, message: planes added
+f59cc05 was FeodorD, 7 days ago, message: added areas
+d18c102 was FeodorD, 8 days ago, message: surfaces wip
+73343c1 was FeodorD, 8 days ago, message: snow terrain IN PROGRESS
+da8a324 was FeodorD, 8 days ago, message: fixed spawn bug
+c95c734 was FeodorD, 8 days ago, message: added dynamic boxes
+920a275 was FeodorD, 8 days ago, message: added dynamic wall
+c4b12b6 was Alexsandr Vobornov, 9 days ago, message: Removed auto-generated off-mesh links. Added 3 (manually generated) off mesh links to connect the 3 levels (1to2, 2to3,3to1). Added rigid bodies to a gents. Changed Update() to FixedUpdate() in GameController to smooth physics movement. Selecting an agent now changes the agent color to green. Deselecting an agent changes the color back to white.
+406a79c was Alexsandr Vobornov, 9 days ago, message: Created 2 more levels. Added off-mesh links to go from level 1 to 2 and from 2 to 3 (and vice versa). Added complexity to maze. When you click middle mouse after sending agents to goal state they will now make their way back to where they spawned. Off-mesh link for level 2->3 is manually generated. Reorganized project structure to encapsulate walls, links into 1 parent folder (respectively)
+f0023bd was Alexsandr Vobornov, 9 days ago, message: Added gitignore for visual studio cache files
+7e63034 was Alexsandr Vobornov, 9 days ago, message: log.txt update
+ee9b7c0 was Alexsandr Vobornov, 9 days ago, message: Created an entire maze for agents to traverse. Implemented agent spawning, need to make it random within a spawnpoint. When you middle click, all selected agents will be sent to the goal state at the end of the maze.
+f74bb42 was Alexsandr Vobornov, 9 days ago, message: Updated the commit log.txt
+ff6d3eb was Alexsandr Vobornov, 9 days ago, message: Added agent navigation. You can select agent(s) now, and if you click on a point where there is no agent to select, all already selected agents will walk to that point on the navmesh.
+9c37a88 was Alexsandr Vobornov, 10 days ago, message: Added the ability (via raycasting) to select agents (left click) and deselect agents (right click)
+60e801d was Alexsandr Vobornov, 10 days ago, message: Merge branch 'master' of https://github.com/vobos2/NavBasics
+422ccd6 was Alexsandr Vobornov, 10 days ago, message: Added Camera free-look script and movement based on camera direction instead of location relative to plane. Renamed asset folders
+4363e5d was vobos2, 11 days ago, message: Create README.md
+a06cf5c was Alexsandr Vobornov, 11 days ago, message: Initial commit, began organizing some game objects and creating workspace for scripts, materials, and scenes.
