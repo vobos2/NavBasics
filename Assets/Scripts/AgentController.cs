@@ -7,70 +7,125 @@ public class AgentController : MonoBehaviour
 {
     // Start is called before the first frame update
     private NavMeshAgent agent;
-    private Vector3 spawnCoords;
+    private Vector3 spawnCoords, target;
     private bool isPicked;
-    private bool isAtTarget;
-    private Vector3 target;
+    public float brakingDistance, agentSpeed, intensity;
+
+    private List<GameObject> agents;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agents = new List<GameObject>(GameObject.FindGameObjectsWithTag("Agent"));
+        agents.Remove(this.agent.gameObject);
+        //Debug.Log(agents.Count);
         RememberSpawn();
         isPicked = false;
-        isAtTarget = false;
         agent.isStopped = true;
+        brakingDistance = 1.5f;
+        agentSpeed = 6f;
+        intensity = 5f;
+
         this.GetComponent<Renderer>().material.color = Color.white;
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckDest();
+        if (Picked())
+        {
+            CheckDist();
+        }
+    }
+    // Decelerate. If value is lower than 0, set to 0. 
+    private void Decelerate(float val)
+    {
+        if (agent.speed > 0)
+        {
+            agent.speed -= val;
+        }
+        else if (agent.speed < 0)
+        {
+            agent.speed = 0;
+        }
+    }
+    // Accelerate. If value is higher than max speed, cap it. 
+    private void Accelerate(float val)
+    {
+        if (agent.speed < agentSpeed)
+        {
+            agent.speed += val;
+        }
+        else if (agent.speed > agentSpeed)
+        {
+            agent.speed = agentSpeed;
+        }
+    }
+    // Checks if agent near other agents, stops it if it is.
+    private void CheckDist()
+    {
+        agents.ForEach(delegate (GameObject a)
+         {
+             if (a.GetComponent<AgentController>().Picked() == true)
+             {
+                 float distToOtherAgent = DistToTarget(agent.gameObject, a.transform.position);
+                 //Debug.Log(distToOtherAgent);
+                 if (distToOtherAgent < brakingDistance)
+                 {
+                 
+                         //Debug.Log("Agent " + distToOtherAgent + " units away, SLOWING DOWN");
+                         Decelerate(intensity);
+                  
+                 }
+                 else
+                 {
+                     Accelerate(agent.speed);
+                 }
+             }
+         });
+
+        float distanceToTarget = DistToTarget(agent.gameObject, target);
+
+        //If distance is less than threshold, initiate braking protocol.
+        if (distanceToTarget <= brakingDistance)
+        {
+            Decelerate(intensity);
+        }
+        // If agent exits range, accelerate
+        else if (distanceToTarget > brakingDistance)
+        {
+            Accelerate(intensity);
+        }
+    }
+    // Is the agent selected?
+    public bool Picked()
+    {
+        return isPicked;
+    }
+    // Returns distance from obj to target
+    private float DistToTarget(GameObject obj, Vector3 target)
+    {
+        return Vector3.Distance(obj.transform.position, target);
     }
 
-    // Checks if agent near destination, stops it if it is.
-    private void CheckDest()
-    {
-        float distanceToTarget = Vector3.Distance(this.agent.transform.position, target);
-        if (distanceToTarget <= 1.1f && agent.isStopped == false)
-        {
-            ImmobilizeAgent();
-        }
-    }
-    // On colliding with another agent that has reached its destination, stops the agent.
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Agent"))
-        {
-            if (other.gameObject.GetComponent<AgentController>().isAtTarget == true)
-            {
-                ImmobilizeAgent();
-            }
-        }
-    }
-    // Stops agent from moving and resets its path
-    private void ImmobilizeAgent()
-    {
-        isAtTarget = true;
-        this.agent.isStopped = true;
-        this.agent.ResetPath();
-    }
-    private void RememberSpawn()
-    {
-        spawnCoords = this.transform.position;
-    }
     // Moves agent to desired vector.
     public void MoveAgent(Vector3 t)
     {
         agent.isStopped = false;
         agent.destination = t;
-        isAtTarget = false;
         target = t;
     }
 
+    // spawnCoords helper method.
     public Vector3 GetSpawnCoords()
     {
         return spawnCoords;
     }
+    // Sets spawnCoords vector to agent's spawn coordinates.
+    private void RememberSpawn()
+    {
+        spawnCoords = this.transform.position;
+    }
+    // Changes color to green if picked, white if not picked.
     public void changeColor()
     {
         if (!isPicked)
@@ -84,4 +139,5 @@ public class AgentController : MonoBehaviour
             isPicked = false;
         }
     }
+
 }

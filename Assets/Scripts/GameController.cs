@@ -11,7 +11,6 @@ public class GameController : MonoBehaviour
     private List<GameObject> hits;
     private List<GameObject> agents;
     private bool atGoal;
-    private Vector3 mouseTarget;
     void Start()
     {
         if (agentNum < 5)
@@ -23,8 +22,6 @@ public class GameController : MonoBehaviour
         hits = new List<GameObject>();
 
         SpawnAgents();
-
-
 
         atGoal = false;
     }
@@ -43,17 +40,19 @@ public class GameController : MonoBehaviour
         return new Vector3(spawn.transform.position.x + (Random.insideUnitCircle * 3).x, 1f, spawn.transform.position.z + (Random.insideUnitCircle * 3).x);
     }
 
+    //Spawn agents up to agentNum
     private void SpawnAgents()
     {
         for (int i = 0; i < agentNum; i++)
         {
-            GameObject agent = Instantiate(agentPrefab);
+            GameObject agent = Instantiate(agentPrefab) as GameObject;
             agents.Add(agent.gameObject);
             agent.transform.parent = agentParent.transform;
             agent.transform.position = GenSpawnPoint();
 
         }
     }
+
     // Raycasting object selection/deselection method
     private void DetectObjects()
     {
@@ -67,7 +66,7 @@ public class GameController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 1500))
             {
                 Transform objectHit = hit.transform;
-                Debug.DrawRay(ray.origin, ray.direction, Color.red);
+                //Debug.DrawRay(ray.origin, ray.direction, Color.red);
 
                 // Do something with the object that was hit by the raycast.
                 if (objectHit.CompareTag("Agent"))
@@ -84,14 +83,13 @@ public class GameController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Sending agents to destination");
-                    foreach (GameObject h in hits)
+                    Debug.Log("Sending agents to destination " + hit.transform);
+                    if (hit.transform)
                     {
-                        if (hit.transform)
+                        foreach (GameObject h in hits)
                         {
                             //Debug.Log(hit.transform.position);
                             h.GetComponent<AgentController>().MoveAgent(hit.point);
-                            mouseTarget = hit.point;
                         }
                     }
                 }
@@ -138,7 +136,7 @@ public class GameController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Sending agents to Maze Goal");
+                Debug.Log("Sending agents to Spawn");
                 foreach (GameObject h in hits)
                 {
                     AgentController cntrl = h.GetComponent<AgentController>();

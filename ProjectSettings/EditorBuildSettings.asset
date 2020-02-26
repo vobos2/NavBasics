@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/NavBasics.unity
+    guid: 45f2cbd09cf0b9a4683b224f8180d25b
   m_configObjects: {}

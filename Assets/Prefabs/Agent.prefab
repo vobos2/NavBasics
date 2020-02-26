@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6147838275601882145}
   - component: {fileID: 3049918319338486319}
+  - component: {fileID: -8798318389372424318}
   - component: {fileID: 4267731360388020637}
   - component: {fileID: 2719691022319664905}
   - component: {fileID: -6936320367602393510}
-  - component: {fileID: -8798318389372424318}
   - component: {fileID: 1232966735018975563}
   m_Layer: 0
   m_Name: Agent
@@ -30,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860948177753848016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.70547, y: -4.619524, z: 0.9633274}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.7, y: 1, z: 0.7}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,6 +44,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860948177753848016}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &-8798318389372424318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860948177753848016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17862780c7f3051449adf940712fd5d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brakingDistance: 0
+  agentSpeed: 0
+  intensity: 0
 --- !u!23 &4267731360388020637
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -104,12 +119,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 5860948177753848016}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.6
-  m_Speed: 10
+  m_Radius: 0.4
+  m_Speed: 8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -117,18 +132,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-8798318389372424318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5860948177753848016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17862780c7f3051449adf940712fd5d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1232966735018975563
 Rigidbody:
   m_ObjectHideFlags: 0
